@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPK – Orquera Parkour Kinect | Escuela de parkour en San Juan, Argentina</title>
+<meta name="description" content="A través del parkour, nos superamos. Escuela de parkour en San Juan, Argentina.">
+<link rel="icon" type="image/png" href="img/foto-01.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* Tipografía Pink Blue: poné el archivo junto a este HTML (PinkBlue.ttf / .otf / .woff2) o pasámelo para incrustarlo */
+@font-face{font-family:"Pink Blue";src:local("Pink Blue"),local("PinkBlue"),url("PinkBlue.woff2") format("woff2"),url("PinkBlue.ttf") format("truetype"),url("PinkBlue.otf") format("opentype");font-display:swap}
+:root{
+  --bg:#05080d;--s1:#0c131c;--s2:#121d2a;--line:rgba(255,255,255,.13);--txt:#eef3f8;--mut:#a3b4c6;
+  --b1:#2b7be4;--b2:#19d3d6;--y:#f9ef23;--grad:linear-gradient(100deg,var(--b1),var(--b2));
+  /* Fotos (podés reemplazarlas por url("img/archivo.jpg")) */
+  --img-comunidad:url("img/foto-02.jpg");
+  --img-parkour:url("img/foto-03.jpg");
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--txt);font:17px/1.65 Manrope,system-ui,sans-serif}
+h1,h2,h3{font-family:Anton,Impact,sans-serif;font-weight:400;line-height:1.05;letter-spacing:.01em}
+a{color:var(--b2)}
+:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Barra superior */
+header{position:fixed;inset:0 0 auto 0;z-index:30;background:rgba(5,8,13,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;font-family:"Pink Blue",Anton,Impact,sans-serif;font-size:1.5rem}
+.logo img{width:46px;height:46px;border-radius:50%;display:block}
+nav ul{list-style:none;display:flex;align-items:center;flex-wrap:wrap;gap:6px 22px;padding:0}
+nav ul a{color:var(--txt);text-decoration:none;font-weight:600;font-size:.97rem}
+nav ul a:hover{color:var(--b2)}
+nav a.pill{background:var(--y);color:#05080d;padding:9px 20px;border-radius:999px;font-weight:800}
+nav a.pill:hover{background:#fff;color:#05080d}
+.mas{position:relative}
+.mas summary{list-style:none;cursor:pointer;font-weight:600;font-size:.97rem;color:var(--txt)}
+.mas summary::-webkit-details-marker{display:none}
+.mas summary::after{content:"";display:inline-block;width:7px;height:7px;margin:0 0 3px 9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.mas details[open] summary::after{transform:rotate(225deg);margin-bottom:0}
+.mas summary:hover{color:var(--b2)}
+.menu{position:absolute;right:0;top:100%;margin-top:14px;min-width:210px;padding:8px !important;display:block !important;background:var(--s2);border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.menu a{display:block;padding:10px 14px;border-radius:8px}
+.menu a:hover{background:rgba(255,255,255,.07)}
+
+/* Portada */
+.hero{min-height:100svh;display:flex;align-items:center;padding:130px 0 80px;background:linear-gradient(90deg,rgba(5,8,13,.94) 0%,rgba(5,8,13,.72) 48%,rgba(5,8,13,.12) 100%),var(--img-parkour) center/cover}
+.hero .wrap{max-width:1640px;padding:0 clamp(24px,5vw,90px)}
+.hero .in{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(28px,6vw,96px)}
+.ht{flex:1 1 560px;min-width:0}
+.hero img{width:clamp(140px,19vw,300px);height:auto;border-radius:50%;display:block;box-shadow:0 0 0 2px var(--line),0 24px 60px rgba(0,0,0,.6)}
+.hero h1{font-family:"Pink Blue",Anton,Impact,sans-serif;font-size:clamp(2.8rem,8.6vw,8.4rem);line-height:.98;color:#fff;max-width:none;text-wrap:balance}
+.eslogan{font-family:Anton,Impact,sans-serif;font-size:clamp(1.5rem,3.6vw,2.8rem);margin-top:18px;line-height:1.15}
+.hero .sub{margin-top:8px;color:var(--mut);font-size:1.1rem}
+.hero p.txt{margin-top:18px;max-width:58ch;color:#d8e2ec}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;border:2px solid transparent;background:var(--y);color:#05080d}
+.btn:hover{background:#fff}
+.btn.o{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn.o:hover{background:#fff;color:#05080d}
+
+.datos{background:var(--s1);border-block:1px solid var(--line)}
+.datos .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.datos div{padding:26px 22px;border-left:1px solid var(--line)}
+.datos div:first-child{border-left:0}
+.datos b{display:block;font-family:Anton;font-weight:400;font-size:2rem;line-height:1.1}
+.datos span{color:var(--mut);font-size:.95rem}
+
+/* Comunidad: mitad foto, mitad texto, a todo el ancho */
+.split{display:grid;grid-template-columns:1.1fr 1fr;min-height:600px}
+.split .foto{background:var(--img-comunidad) center 30%/cover;min-height:380px}
+.split .txt{background:var(--s1);padding:clamp(34px,6vw,96px);display:flex;flex-direction:column;justify-content:center}
+.split p{max-width:46ch;color:#d3deea;margin-top:14px}
+
+section{padding:100px 0}
+.h2{font-size:clamp(2.3rem,5.4vw,4rem);text-transform:uppercase}
+.h2+.bar{display:block;width:84px;height:6px;border-radius:3px;background:var(--grad);margin:16px 0 28px}
+.lead{color:var(--mut);max-width:60ch;margin-bottom:34px}
+
+/* Clases */
+.clase{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:center;padding:24px 28px;margin-bottom:14px;background:var(--s1);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:16px}
+.hora{font-family:Anton;font-size:2.5rem;line-height:1;color:var(--c)}
+.clase h3{font-size:1.7rem}
+.clase p{color:var(--mut)}
+.dias{color:var(--txt);font-weight:600;font-size:.95rem;border:1px solid var(--line);padding:6px 14px;border-radius:999px;white-space:nowrap}
+.aviso{margin-top:22px;padding:18px 22px;border-radius:14px;background:var(--s2);border:1px solid var(--line)}
+
+/* Precios */
+.tarifas{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.fila{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.fila h3{font-family:Manrope;font-weight:800;font-size:1.15rem}
+.fila small{display:block;color:var(--mut);font-size:.9rem}
+.fila .p{font-family:Anton;font-size:2.4rem;line-height:1}
+.card{padding:26px;margin-bottom:16px;background:var(--s1);border:1px solid var(--line);border-radius:18px}
+.card h3{font-size:1.5rem;margin-bottom:10px}
+.card ul{padding-left:20px}.card li{margin:5px 0;color:#d3deea}
+.card.warn{border-color:rgba(249,239,35,.55)}
+
+/* Socios */
+.socios{padding:0}
+.socios .band{background:var(--grad);color:#04121a;border-radius:24px;padding:clamp(30px,5vw,56px);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.socios h2{font-size:clamp(2rem,4vw,3rem);text-transform:uppercase}
+.socios p{max-width:52ch;margin-top:8px;font-weight:600}
+.socios .btn{background:#05080d;color:#fff}
+.socios .btn:hover{background:#fff;color:#05080d}
+
+/* Ubicación */
+.ubic{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px);align-items:start}
+dt{font-family:Anton;font-size:1.3rem;margin-top:18px}
+dd{color:#d3deea}
+.mapa{padding:34px;border-radius:22px;background:var(--s2);border:1px solid var(--line)}
+.mapa h3{font-size:2rem;margin-bottom:8px}
+.mapa p{color:var(--mut);margin-bottom:22px}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px}
+.ph{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:center/cover;filter:contrast(1.05) saturate(1.1)}
+.ph.a{background-image:var(--img-parkour)}
+.ph.b{background-image:var(--img-infantil)}
+.ph span{position:absolute;inset:auto 0 0 0;padding:60px 24px 20px;background:linear-gradient(to top,rgba(5,8,13,.92),transparent);font-size:.95rem}
+.ph b{display:block;font-family:Anton;font-weight:400;font-size:1.6rem}
+.galeria+p{margin-top:18px;color:var(--mut)}
+
+/* Eventos */
+.ev{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.ev a{display:block;padding:30px 26px;border-radius:20px;background:var(--s1);border:1px solid var(--line);border-top:6px solid var(--b2);text-decoration:none;color:var(--txt)}
+.ev a:hover{background:var(--s2)}
+.ev b{display:block;font-family:Anton;font-weight:400;font-size:1.6rem;line-height:1.1}
+.ev span{color:var(--mut);font-size:.93rem}
+
+/* Sobre OPK */
+.nos{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.nos p{color:#d3deea;margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:20px 0}
+.chips li{padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--s1);font-size:.95rem}
+.chips li.c{background:var(--grad);color:#04121a;font-weight:800;border-color:transparent}
+blockquote{padding:34px;border-radius:22px;background:var(--s2);border:1px solid var(--line);font-family:Anton;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.25}
+
+/* Cronograma y documentos */
+.meses{display:flex;flex-wrap:wrap;gap:12px}
+.meses a,.meses span{padding:14px 26px;border-radius:999px;border:1px solid var(--line);background:var(--s1);text-decoration:none;font-weight:800;color:var(--txt)}
+.meses a:hover{background:var(--grad);color:#04121a;border-color:transparent}
+.meses span{color:var(--mut);font-weight:400}
+.docs a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;margin-bottom:10px;border-radius:14px;background:var(--s1);border:1px solid var(--line);text-decoration:none;color:var(--txt);font-weight:800}
+.docs a small{display:block;color:var(--mut);font-weight:400}
+.docs a::after{content:"Ver";color:var(--b2);font-weight:600;font-size:.9rem}
+.docs a:hover{border-color:var(--b2)}
+
+
+/* Qué es el parkour */
+.que{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,48px)}
+.que p{color:#d3deea;margin-top:14px;max-width:72ch}
+.pilares{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.pilares li{padding:14px 18px;border-radius:14px;background:var(--bg);border:1px solid var(--line);border-left:6px solid var(--b2)}
+.pilares b{display:block;font-family:Anton;font-weight:400;font-size:1.25rem}
+.pilares span{color:var(--mut);font-size:.95rem}
+.video{position:relative;aspect-ratio:16/9;width:100%;border-radius:22px;overflow:hidden;background:#000;box-shadow:0 0 0 1px var(--line),0 30px 70px rgba(0,0,0,.55)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.credito{margin-top:12px;color:var(--mut);font-size:.88rem}
+.credito a{color:var(--mut)}
+@media (max-width:900px){.que{grid-template-columns:1fr}}
+
+/* Video con miniatura */
+.play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:url("https://i.ytimg.com/vi/xclQkI29PxE/maxresdefault.jpg") center/cover,url("https://i.ytimg.com/vi/xclQkI29PxE/hqdefault.jpg") center/cover,#000;display:grid;place-items:center;color:#fff}
+.play::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,13,.85),rgba(5,8,13,.1) 55%)}
+.tri{position:relative;width:104px;height:104px;border-radius:50%;background:var(--grad);box-shadow:0 12px 40px rgba(0,0,0,.55);transition:transform .15s}
+.tri::after{content:"";position:absolute;left:43px;top:30px;border-left:36px solid #04121a;border-top:22px solid transparent;border-bottom:22px solid transparent}
+.play:hover .tri{transform:scale(1.08)}
+.vt{position:absolute;left:22px;bottom:18px;text-align:left;font-size:.92rem;color:#d8e2ec}
+.vt b{display:block;font-family:Anton;font-weight:400;font-size:1.4rem;color:#fff}
+
+/* Galería con flechas */
+.gal-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
+.flechas{display:flex;gap:10px;margin-bottom:28px}
+.fl{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:#fff;cursor:pointer;display:grid;place-items:center}
+.fl:hover{background:var(--grad);color:#04121a;border-color:transparent}
+.filtros{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.f{padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font:700 .95rem Manrope,sans-serif;cursor:pointer}
+.f:hover{border-color:var(--b2)}
+.f[aria-pressed="true"]{background:var(--grad);color:#04121a;border-color:transparent}
+.pista{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-width:thin;scrollbar-color:var(--b1) transparent}
+.slide{flex:0 0 auto;height:clamp(300px,40vw,480px);position:relative;border-radius:20px;overflow:hidden;scroll-snap-align:start;background:#000}
+.slide[hidden]{display:none}
+.slide img{display:block;height:100%;width:auto}
+.slide figcaption{position:absolute;inset:auto 0 0 0;padding:56px 20px 16px;background:linear-gradient(to top,rgba(5,8,13,.92),transparent)}
+.slide b{font-family:Anton;font-weight:400;font-size:1.5rem}
+@media (max-width:700px){.slide{height:300px}.fl{width:48px;height:48px}}
+
+/* Cupos */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cup-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.cup-head .btn{margin-bottom:28px}
+.cup-scroll{overflow-x:auto}
+.cup{width:100%;min-width:780px;border-collapse:separate;border-spacing:0 10px}
+.cup th,.cup td{padding:16px 14px;background:var(--bg);text-align:center}
+.cup thead th{background:none;font-family:Anton;font-weight:400;font-size:1.15rem;letter-spacing:.03em;color:var(--mut);padding-block:4px}
+.cup tbody th{text-align:left;border-radius:14px 0 0 14px;width:28%}
+.cup tbody td:last-child{border-radius:0 14px 14px 0}
+.cup th b{display:block;font-family:Anton;font-weight:400;font-size:1.25rem;line-height:1.1}
+.cup th span{color:var(--mut);font-size:.9rem;font-weight:400}
+.b{display:inline-block;padding:7px 14px;border-radius:999px;font-weight:800;font-size:.88rem;white-space:nowrap}
+.b.ok{background:rgba(61,220,151,.15);color:#3ddc97;border:1px solid rgba(61,220,151,.55)}
+.b.no{background:rgba(255,93,108,.15);color:#ff8591;border:1px solid rgba(255,93,108,.55)}
+.b.q{color:var(--mut);border:1px dashed var(--line)}
+.cup-pie{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+.cup-pie p{color:var(--mut);font-size:.95rem;line-height:2.3}
+
+/* Días, horarios y cupos (unificado) */
+#clases .cup th,#clases .cup td{background:var(--s1)}
+#clases .cup thead th{background:none}
+.cup tbody th{border-left:6px solid var(--c,var(--b2))}
+.cup th .hora{display:block;font-family:Anton;font-weight:400;font-size:1.7rem;line-height:1.1;color:var(--c,var(--b2))}
+.leyenda{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 18px;color:var(--mut);font-size:.95rem}
+.leyenda .b{margin-left:10px}.leyenda .b:first-child{margin-left:0}
+.info2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:26px}
+.info2 .card{margin:0}
+.info2 .card p{color:#d3deea;margin-bottom:18px}
+.info2 .card.esp{border-color:rgba(249,239,35,.55)}
+
+/* Ampliar foto */
+.zoom{display:block;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.slide figcaption{pointer-events:none}
+.zoom:hover img{filter:brightness(1.08)}
+dialog#lb{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:#fff}
+dialog#lb::backdrop{background:rgba(2,5,9,.94)}
+.lb-in{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:64px 20px 24px}
+#lbimg{max-width:min(94vw,1600px);max-height:80vh;width:auto;height:auto;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+#lbcap{font-weight:700;color:#d8e2ec}
+.lb-b{position:absolute;width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:rgba(18,29,42,.9);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:1.6rem;line-height:1}
+.lb-b:hover{background:var(--grad);color:#04121a;border-color:transparent}
+.lb-x{top:16px;right:16px}.lb-p{left:16px;top:50%;transform:translateY(-50%)}.lb-n{right:16px;top:50%;transform:translateY(-50%)}
+@media (max-width:700px){.lb-p,.lb-n{top:auto;bottom:16px;transform:none}.lb-in{padding-bottom:84px}}
+
+/* Sedes */
+.sedes{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.sedes button{padding:14px 28px;border-radius:999px;border:1px solid var(--line);background:var(--s1);color:var(--txt);font:800 1rem Manrope,system-ui,sans-serif;cursor:pointer}
+.sedes button:hover{border-color:var(--b2)}
+.sedes button[aria-selected="true"]{background:var(--grad);color:#04121a;border-color:transparent}
+.sede-info{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-bottom:6px;color:var(--mut)}
+.sede-info b{font-family:Anton;font-weight:400;font-size:1.6rem;color:#fff}
+.btn.chico{padding:9px 18px;font-size:.92rem}
+[hidden]{display:none!important}
+
+/* Selector de sede (arriba de la sección) */
+.sedes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:0 0 30px}
+.sedes button{padding:20px 26px;border-radius:18px;text-align:left;display:block;border:2px solid var(--line);background:var(--s1);color:var(--txt);font-family:Manrope,system-ui,sans-serif;cursor:pointer}
+.sedes button b{display:block;font-family:Anton;font-weight:400;font-size:1.7rem;line-height:1.1}
+.sedes button span{color:var(--mut);font-size:.95rem}
+.sedes button[aria-selected="true"]{background:var(--grad);border-color:transparent;color:#04121a}
+.sedes button[aria-selected="true"] span{color:#04121a;font-weight:600}
+
+/* Fotos del gimnasio: completas, sin marco */
+.galeria{align-items:start}
+.gph{margin:0}
+.gph .ph{border-radius:0;overflow:visible;filter:none;aspect-ratio:4/3;background-color:transparent;background-size:contain;background-repeat:no-repeat;background-position:center}
+.gph figcaption{padding:12px 2px 0;color:var(--mut);font-size:.95rem}
+.gph figcaption b{display:block;font-family:Anton;font-weight:400;font-size:1.5rem;color:#fff}
+
+.docs .doc{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;margin-bottom:10px;border-radius:14px;background:var(--s1);border:1px solid rgba(249,239,35,.55);font-weight:800}
+.docs .doc small{display:block;color:var(--mut);font-weight:400}
+.docs .doc::after{content:"Próximamente";color:var(--y);font-weight:600;font-size:.9rem}
+
+.gph .gimg{display:block;width:100%;height:auto;border-radius:0}
+
+footer{background:#000;border-top:1px solid var(--line);padding:56px 0;color:var(--mut)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between}
+footer .m{display:flex;align-items:center;gap:18px}
+footer img{width:70px;height:70px;border-radius:50%}
+footer strong{display:block;color:#fff;font-family:"Pink Blue",Anton,sans-serif;font-size:1.6rem;font-weight:400}
+footer a{color:#fff}
+
+@media (max-width:900px){
+  .split,.tarifas,.ubic,.nos,.galeria{grid-template-columns:1fr}
+  .clase{grid-template-columns:1fr;gap:6px}
+  .dias{justify-self:start;margin-top:8px}
+  .datos div{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:700px){
+  nav{flex-direction:column;align-items:flex-start;padding:10px 0}
+  .hero{padding-top:170px}
+  section{padding:70px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<style>
+.pago h3{background:var(--b1);color:#fff;text-transform:uppercase;letter-spacing:.06em;padding:14px 18px;border-radius:12px;margin:0 0 16px;text-align:center}
+.pago .pg-t{margin:0 0 8px;font-weight:800;color:var(--b2);text-transform:uppercase;letter-spacing:.08em;font-size:.8rem}
+.pg{margin:0 0 16px}.pg>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--b1)33}
+.pg dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#9fb2c8}
+.pg dd{margin:0;font-weight:700;display:flex;align-items:center;gap:10px;text-align:right}
+.cp{border:1px solid var(--b2);background:transparent;color:var(--b2);border-radius:999px;padding:4px 12px;font:inherit;font-size:.75rem;font-weight:700;cursor:pointer}
+.cp:hover{background:var(--b2);color:#05080d}
+.pago .pg dt,.pago .pg dd,.pago .pg-w a{color:var(--b2)}
+.pago .pg dt{opacity:.8}
+.pago .pg>div{border-bottom-color:rgba(25,211,214,.3)}
+.pg-w{margin:12px 0 0;text-align:center}
+</style>
+<style>
+.notas{display:grid;gap:18px}
+.nota{display:block;padding:28px;background:var(--s1);border:1px solid var(--line);border-left:6px solid var(--b1);border-radius:18px;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
+.nota:hover{transform:translateY(-3px);border-left-color:var(--b2)}
+.nota .med{display:block;color:var(--b2);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;margin-bottom:10px}
+.nota b{display:block;font-family:Anton;font-weight:400;font-size:clamp(1.4rem,3vw,2rem);line-height:1.15;margin-bottom:10px}
+.nota p{margin:0 0 12px;color:#d3deea}
+.nota .meta{display:block;color:var(--mut);font-size:.9rem;margin-bottom:16px}
+.nota .leer{display:inline-block;background:var(--grad);color:#05080d;font-weight:800;padding:10px 20px;border-radius:999px}
+.nota{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;padding:0;overflow:hidden}
+.nota.sinimg{grid-template-columns:1fr}
+.nota .nimg{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}
+.nota .ncont{padding:28px;align-self:center}
+@media(max-width:760px){.nota{grid-template-columns:1fr}.nota .nimg{min-height:0;aspect-ratio:4/3}}
+.mas-notas{margin-top:6px}
+.mas-notas summary{list-style:none;cursor:pointer;display:inline-block;background:var(--grad);color:#05080d;font-weight:800;padding:14px 30px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.mas-notas summary::-webkit-details-marker{display:none}
+.mas-notas summary .sm-b{display:none}
+.mas-notas[open] summary .sm-a{display:none}
+.mas-notas[open] summary .sm-b{display:inline}
+.mas-notas[open] summary{margin-bottom:18px}
+.mas-notas summary:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+.pk{position:relative;overflow:hidden;padding:clamp(72px,10vw,120px) 0;background:radial-gradient(900px 420px at 85% 0%,rgba(43,123,228,.22),transparent 65%),radial-gradient(700px 380px at 0% 100%,rgba(25,211,214,.14),transparent 65%),var(--bg)}
+.pk-marca{position:absolute;right:-2%;top:6%;font-family:Anton;font-size:clamp(7rem,24vw,22rem);line-height:1;color:transparent;-webkit-text-stroke:2px rgba(43,123,228,.28);letter-spacing:.02em;pointer-events:none;user-select:none}
+.pk .wrap{position:relative}
+.pk-eti{margin:0 0 14px;color:var(--b2);font-weight:800;text-transform:uppercase;letter-spacing:.2em;font-size:.78rem}
+.pk-h{margin:0 0 clamp(28px,4vw,44px);font-family:Anton;font-weight:400;font-size:clamp(2.6rem,8vw,6rem);line-height:1;text-transform:uppercase}
+.pk-h em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pk-cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.pk-lead{margin:0;padding-left:24px;border-left:6px solid;border-image:var(--grad) 1;font-size:clamp(1.15rem,2.2vw,1.55rem);line-height:1.45;font-weight:600;color:#fff}
+.pk-obs{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.pk-obs li{padding:9px 16px;border:1px solid var(--b1);border-radius:999px;font-weight:700;font-size:.9rem;color:#d3deea;background:rgba(43,123,228,.1)}
+.pk-ruta{list-style:none;margin:clamp(36px,5vw,60px) 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.pk-ruta::before{content:"";position:absolute;left:4%;right:4%;top:22px;border-top:3px dashed rgba(25,211,214,.55)}
+.pk-ruta li{position:relative;text-align:center;font-family:Anton;font-size:clamp(1rem,2.6vw,1.7rem);text-transform:uppercase;letter-spacing:.04em}
+.pk-ruta li span{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 12px;border-radius:50%;background:var(--grad);color:#05080d;font-family:Manrope;font-weight:800;font-size:.95rem;box-shadow:0 0 0 6px var(--bg)}
+.pk-txt{margin:clamp(32px,5vw,52px) 0 0;max-width:78ch;color:#d3deea;font-size:1.05rem;line-height:1.7}
+.pk-txt b{color:var(--y);font-weight:700}
+@media(max-width:760px){
+.pk-cols{grid-template-columns:1fr}
+.pk-ruta{grid-template-columns:1fr;gap:18px;padding-left:8px}
+.pk-ruta::before{left:30px;right:auto;top:20px;bottom:20px;border-top:0;border-left:3px dashed rgba(25,211,214,.55)}
+.pk-ruta li{display:flex;align-items:center;gap:16px;text-align:left}
+.pk-ruta li span{margin:0;flex:none}
+}
+.equipo{list-style:none;margin:26px 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.equipo li{display:flex;align-items:center;gap:14px;padding:12px 14px;background:var(--s1);border:1px solid var(--line);border-radius:16px}
+.equipo .av{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--s2);border:2px solid var(--b1);font-family:Anton;letter-spacing:.04em;color:var(--b2);overflow:hidden}
+.equipo .av img{width:100%;height:100%;object-fit:cover;display:block}
+.equipo .tx b{display:block;line-height:1.2}
+.equipo .tx small{color:var(--mut);font-size:.82rem}
+.equipo .jefe{grid-column:1/-1;background:linear-gradient(135deg,rgba(43,123,228,.25),rgba(25,211,214,.18));border-color:var(--b2)}
+.equipo .jefe .av{width:64px;height:64px;background:var(--grad);color:#04121a;border-color:transparent;font-size:1.3rem}
+.equipo .jefe .tx b{font-size:1.15rem}
+.equipo .jefe .tx small{color:var(--b2);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:480px){.equipo{grid-template-columns:1fr}}
+.staff-h{margin:30px 0 0;font-family:Anton;font-weight:400;font-size:clamp(1.6rem,3.4vw,2.2rem);text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:14px}
+.staff-h::after{content:"";flex:1;height:4px;border-radius:2px;background:var(--grad)}
+.staff-h+.equipo{margin-top:16px}
+/* Menú superior destacado */
+.logo{font-family:Anton,Impact,sans-serif;font-size:2.1rem;letter-spacing:.06em;line-height:1}
+.logo img{width:50px;height:50px;box-shadow:0 0 0 2px var(--b1),0 0 18px rgba(43,123,228,.6)}
+nav>ul>li>a:not(.pill),.mas summary{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.15rem;text-transform:uppercase;letter-spacing:.09em;color:#fff;position:relative;padding:6px 0}
+nav>ul>li>a:not(.pill)::before,.mas summary::before{content:"";position:absolute;left:0;bottom:-2px;height:4px;width:0;border-radius:2px;background:var(--grad);transition:width .25s ease}
+nav>ul>li>a:not(.pill):hover::before,nav>ul>li>a:not(.pill):focus-visible::before,.mas summary:hover::before,.mas details[open] summary::before{width:100%}
+nav>ul>li>a:not(.pill):hover,.mas summary:hover{color:var(--b2)}
+nav a.pill{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.1rem;text-transform:uppercase;letter-spacing:.09em;padding:10px 24px;box-shadow:0 0 0 0 rgba(249,239,35,.5);transition:box-shadow .25s,background .2s}
+nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
+.menu a{font-family:Manrope,sans-serif;font-weight:700;font-size:.95rem;text-transform:none;letter-spacing:0}
+@media(max-width:760px){.logo{font-size:1.7rem}nav>ul>li>a:not(.pill),.mas summary{font-size:1rem}nav a.pill{font-size:1rem;padding:8px 18px}}
+.hist{margin-top:clamp(28px,4vw,48px)}
+.hd>summary{list-style:none;cursor:pointer;display:inline-block;background:var(--grad);color:#05080d;font-weight:800;padding:14px 30px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.hd>summary::-webkit-details-marker{display:none}
+.hd summary .sm-b{display:none}.hd[open] summary .sm-a{display:none}.hd[open] summary .sm-b{display:inline}
+.hd summary:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+.hbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 8px}
+.hbar .staff-h{margin:0;flex:1}
+.hctl{display:flex;gap:8px}
+.hctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--b2);background:transparent;color:var(--b2);font-size:1.6rem;line-height:1;cursor:pointer}
+.hctl button:hover{background:var(--b2);color:#05080d}
+.hpista{list-style:none;margin:0;padding:34px 4px 18px;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;position:relative;scrollbar-width:thin}
+.hito{flex:0 0 min(300px,80%);scroll-snap-align:start;position:relative;padding-top:30px;border-top:3px solid rgba(25,211,214,.55)}
+.hito::before{content:"";position:absolute;top:-10px;left:0;width:17px;height:17px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 5px var(--bg)}
+.hfoto{aspect-ratio:4/3;border-radius:14px;margin-bottom:14px;display:grid;place-items:center;overflow:hidden;background:repeating-linear-gradient(45deg,var(--s1),var(--s1) 12px,var(--s2) 12px,var(--s2) 24px);border:1px dashed var(--b1);color:var(--mut);font-weight:700;font-size:.85rem}
+.hfoto img{width:100%;height:100%;object-fit:cover;display:block}
+.hy{display:block;font-family:Anton;font-size:2.6rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hito h4{margin:6px 0 6px;font-size:1.05rem;line-height:1.25}
+.hito p{margin:0;color:#d3deea;font-size:.95rem;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav aria-label="Principal">
+      <a class="logo" href="#inicio" aria-label="OPK, ir al inicio"><img src="img/foto-01.png" alt="OPK" width="46" height="46"></a>
+      <ul>
+        <li><a href="#clases">Clases</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a class="pill" href="#socios">Socios</a></li>
+        <li class="mas">
+          <details>
+            <summary>Más información</summary>
+            <ul class="menu">
+              <li><a href="#parkour">¿Qué es el parkour?</a></li>
+              <li><a href="#galeria">Galería</a></li>
+              <li><a href="#eventos">Eventos</a></li>
+              <li><a href="#medios">En los medios</a></li>
+              <li><a href="#nosotros">Sobre OPK</a></li>
+              <li><a href="#cronograma">Cronograma</a></li>
+              <li><a href="#documentos">Documentos</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="inicio" class="hero" style="padding-bottom:80px">
+  <div class="wrap in">
+    <img src="img/foto-04.jpg" alt="Logo de OPK: círculo de pincelada azul con un atleta realizando un salto mortal" width="447" height="447">
+    <div class="ht">
+      <h1>Orquera Parkour Kinect</h1>
+      <p class="eslogan gt">A través del parkour, nos superamos.</p>
+      <p class="sub">Escuela de parkour en San Juan, Argentina.</p>
+      <p class="txt">Desde 2015 somos referentes del parkour en San Juan. En OPK no solo aprendés a saltar: aprendés a confiar en vos mismo.</p>
+      <div class="btns">
+        <a class="btn" href="#clases">Ver días y horarios</a>
+        <a class="btn o" href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform">Inscribirme 2026</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="datos">
+  <div class="wrap">
+    <div><b class="gt">+ de 100 alumnos</b><span>Entrenando en la práctica</span></div>
+    <div><b class="gt">8 profesores</b><span>Equipo de instructores</span></div>
+    <div><b class="gt">Desde 2015</b><span>Enseñando parkour en San Juan</span></div>
+    <div><b class="gt">4 años a adultos</b><span>Grupos por edad y nivel</span></div>
+    <div><b class="gt">Lunes a viernes</b><span>Clases por la tarde-noche</span></div>
+  </div>
+</div>
+
+
+<section id="parkour" class="pk">
+  <span class="pk-marca" aria-hidden="true">PARKOUR</span>
+  <div class="wrap">
+    <p class="pk-eti">Disciplina · Movimiento · Superación</p>
+    <h2 class="pk-h">¿Qué es el <em>parkour</em>?</h2>
+    <div class="pk-cols">
+      <p class="pk-lead">Es una disciplina física y funcional que desarrolla el arte de desplazarse superando los obstáculos que se presentan en el recorrido, utilizando únicamente el propio cuerpo como herramienta.</p>
+      <ul class="pk-obs" aria-label="Capacidades que desarrolla">
+        <li>Adaptabilidad</li><li>Fuerza</li><li>Control corporal</li><li>Agilidad</li><li>Velocidad</li><li>Coordinación</li>
+      </ul>
+    </div>
+    <p class="pk-txt">A través del entrenamiento progresivo de las habilidades motrices básicas (correr, saltar, trepar, balancearse, equilibrio, recepcionar, etc.), potencia la fuerza, la agilidad y el control corporal. Más allá de lo físico, enseña a leer el entorno, conocer los propios límites y resolver cada desafío con <b>eficiencia, fluidez y seguridad</b>, adaptándose a cualquier edad, estilo o nivel.</p>
+  </div>
+</section>
+
+<div id="comunidad" class="split">
+  <div class="foto" role="img" aria-label="Alumnos e instructores de OPK con la camiseta del equipo, sentados en las escalinatas del Centro de Innovación Educativa"></div>
+  <div class="txt">
+    <h2 class="h2">Unite a la comunidad</h2><span class="bar" style="display:block;width:84px;height:6px;border-radius:3px;background:var(--grad);margin-top:16px"></span>
+    <p>Desde 2015, somos referentes del Parkour en San Juan. En OPK no solo aprendés a saltar, aprendés a confiar en vos mismo. Clases guiadas por profesionales, instalaciones preparadas y la mejor comunidad para entrenar.</p>
+    <p><b>¿Estás listo para ver el mundo como tu gimnasio?</b></p>
+    <div class="btns">
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform">Inscribirme 2026</a>
+      <a class="btn o" href="https://wa.me/542645753607">Escribinos por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<section id="clases">
+  <div class="wrap">
+    <h2 class="h2">Días, horarios y cupos</h2><span class="bar"></span>
+    <div class="sedes" role="tablist" aria-label="Elegí la sede">
+      <button type="button" role="tab" id="tab-capital" aria-selected="true" aria-controls="panel-capital"><b>Sede oficial Capital</b><span>25 de Mayo 967 Este</span></button>
+      <button type="button" role="tab" id="tab-anexo" aria-selected="false" aria-controls="panel-anexo" tabindex="-1"><b>Anexo Rawson</b><span>CENTIR GYM</span></button>
+    </div>
+    <p class="lead">Las clases son de lunes a viernes. Elegí el grupo según la edad.</p>
+    <div id="panel-capital" role="tabpanel" aria-labelledby="tab-capital">
+      <div class="sede-info"><b>Sede oficial Capital</b><span>25 de Mayo 967 Este, Capital</span><a class="btn o chico" href="https://share.google/n15KNjo4FpJSv6rLh" target="_blank" rel="noopener">Ver ubicación</a></div>
+      <div class="cup-scroll">
+      <table class="cup">
+        <caption class="sr">Días, horarios y disponibilidad de cupos por grupo</caption>
+        <thead><tr><th scope="col">Grupo y horario</th><th scope="col">Lunes</th><th scope="col">Martes</th><th scope="col">Miércoles</th><th scope="col">Jueves</th><th scope="col">Viernes</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" style="--c:#3b8cf0"><span class="hora">18:30 hs</span><b>Parkour Kids</b><span>4 a 7 años</span></th><td><span class="b ok">Disponible</span></td><td><span class="b no">Sin cupo</span></td><td><span class="b ok">Disponible</span></td><td><span class="b no">Sin cupo</span></td><td><span class="b ok">Disponible</span></td></tr>
+          <tr><th scope="row" style="--c:#c3ccd6"><span class="hora">19:30 hs</span><b>Parkour Infantil</b><span>8 a 11 años</span></th><td><span class="b ok">Disponible</span></td><td><span class="b no">Sin cupo</span></td><td><span class="b ok">Disponible</span></td><td><span class="b no">Sin cupo</span></td><td><span class="b ok">Disponible</span></td></tr>
+          <tr><th scope="row" style="--c:#19d3d6"><span class="hora">20:30 hs</span><b>Parkour Adolescentes y Adultos</b><span>Grupo mixto</span></th><td><span class="b no">Sin cupo</span></td><td><span class="sr">No se dicta</span></td><td><span class="b no">Sin cupo</span></td><td><span class="sr">No se dicta</span></td><td><span class="sr">No se dicta</span></td></tr>
+          <tr><th scope="row" style="--c:#f9ef23"><span class="hora">20:30 hs</span><b>Funcional / Calistenia</b><span>Fuerza y movimiento</span></th><td><span class="sr">No se dicta</span></td><td><span class="b ok">Disponible</span></td><td><span class="sr">No se dicta</span></td><td><span class="b ok">Disponible</span></td><td><span class="sr">No se dicta</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div id="panel-anexo" role="tabpanel" aria-labelledby="tab-anexo" hidden>
+      <div class="sede-info"><b>Anexo Rawson</b><span>CENTIR GYM</span><a class="btn o chico" href="https://share.google/JyXAz5mglVKhxrqHw" target="_blank" rel="noopener">Ver ubicación</a></div>
+      <div class="cup-scroll">
+        <table class="cup">
+          <caption class="sr">Días, horarios y cupos del Anexo Rawson</caption>
+          <thead><tr><th scope="col">Grupo y horario</th><th scope="col">Lunes</th><th scope="col">Martes</th><th scope="col">Miércoles</th><th scope="col">Jueves</th><th scope="col">Viernes</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" style="--c:#3b8cf0"><span class="hora">19:00 a 20:00 hs</span><b>Parkour Kids</b><span>4 a 11 años</span></th><td><span class="sr">No se dicta</span></td><td><span class="b ok">Disponible</span></td><td><span class="sr">No se dicta</span></td><td><span class="b ok">Disponible</span></td><td><span class="sr">No se dicta</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <noscript><style>#panel-anexo{display:block!important}</style></noscript>
+    <div class="info2">
+      <div class="card esp">
+        <h3>¿Tu grupo está sin cupo?</h3>
+        <p>Anotate en la lista de espera y nos comunicamos apenas se libere un lugar.</p>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScDm6Yu8bkDsoOORDMHXFbZJk3uNr6Ed65qdruPadvutwWDIw/viewform">Lista de espera</a>
+      </div>
+      <div class="card">
+        <h3>Importante</h3>
+        <ul>
+          <li>Por el momento no hay cupos para chicos con diagnóstico médico.</li>
+          <li>La disponibilidad cambia según las inscripciones.</li>
+          <li>Podés consultar por WhatsApp: <a href="https://wa.me/542645753607">264-5753607</a> o <a href="https://wa.me/542644428488">264-4428488</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="precios" style="background:var(--s1)">
+  <div class="wrap">
+    <h2 class="h2">Precios</h2><span class="bar"></span>
+    <p class="lead">Valores vigentes desde agosto de 2026.</p>
+    <div class="tarifas">
+      <div>
+        <div class="fila"><h3>3 veces por semana<small>Mensualidad</small></h3><div class="p gt">$51.000</div></div>
+        <div class="fila"><h3>2 veces por semana<small>Mensualidad</small></h3><div class="p gt">$41.000</div></div>
+        <div class="fila"><h3>1 vez por semana<small>Mensualidad</small></h3><div class="p gt">$31.000</div></div>
+        <div class="fila"><h3>Prueba individual<small>Una clase</small></h3><div class="p gt">$10.000</div></div>
+        <div class="fila"><h3>Inscripción individual<small>Alumno sin hermanos en OPK</small></h3><div class="p gt">$20.000</div></div>
+      </div>
+      <div>
+        <div class="card"><h3>Descuento por hermanos</h3><ul><li>3 veces por semana: <strong>$45.000</strong> cada hermano</li><li>2 veces por semana: <strong>$35.000</strong> cada hermano</li><li>Inscripción: <strong>$10.000</strong> cada hermano</li></ul></div>
+        <div class="card warn"><h3>Abono mensual</h3><ul><li>Se realiza del 1 al 12 de cada mes.</li><li>Después del día 12 hay recargo del 10%, sin excepción.</li><li>Quienes ingresan después del día 15 abonan por clase individual hasta iniciar el nuevo mes.</li></ul></div>
+        <div class="card pago"><h3>PAGOS: EFECTIVO O TRANSFERENCIA</h3>
+          <p class="pg-t">Datos para transferir</p>
+          <dl class="pg">
+            <div><dt>Transferencia</dt><dd>OPK Escuela de Parkour</dd></div>
+            <div><dt>Banco</dt><dd>Naranja X</dd></div>
+            <div><dt>Alias</dt><dd><span id="pg-alias">OPK.PARKOUR</span><button type="button" class="cp" data-cp="pg-alias">Copiar</button></dd></div>
+            <div><dt>Cuenta</dt><dd>Naranja X</dd></div>
+            <div><dt>Titular</dt><dd><span id="pg-tit">Santiago Orquera</span><button type="button" class="cp" data-cp="pg-tit">Copiar</button></dd></div>
+          </dl>
+          <div class="btns"><a class="btn" href="https://wa.me/5492645753607?text=Hola%20OPK%21%20Te%20env%C3%ADo%20el%20comprobante%20de%20pago.%20Nombre%20del%20atleta%3A%20">Enviar comprobante por WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="socios" class="socios" style="padding:100px 0 0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h2>Portal de socios</h2>
+        <p>Si ya sos parte de OPK, ingresá al portal para gestionar tu cuenta y consultar la información de tu membresía.</p>
+      </div>
+      <a class="btn" id="btn-portal" href="https://opksanjuan.github.io/SOCIOS-WEB/">Ir al portal de socios</a>
+    </div>
+  </div>
+</section>
+
+<section id="ubicacion">
+  <div class="wrap">
+    <h2 class="h2">Dónde estamos</h2><span class="bar"></span>
+    <div class="ubic">
+      <dl>
+        <dt>Sede oficial Capital</dt><dd>25 de Mayo 967 Este, Capital, San Juan</dd>
+        <dt>Anexo Rawson</dt><dd>CENTIR GYM. <a href="https://share.google/JyXAz5mglVKhxrqHw" target="_blank" rel="noopener">Ver ubicación</a></dd>
+        <dt>Correo electrónico</dt><dd><a href="mailto:opk.sanjuan@gmail.com">opk.sanjuan@gmail.com</a></dd>
+        <dt>Seguinos en nuestras redes</dt><dd><a href="https://www.instagram.com/parkour.opk/">Instagram: @parkour.opk</a></dd>
+        <dt>Teléfonos y WhatsApp</dt><dd><a href="https://wa.me/542645753607">264-5753607</a> y <a href="https://wa.me/542644428488">264-4428488</a></dd>
+      </dl>
+      <div class="mapa">
+        <h3 class="gt">El mejor espacio para superar tus miedos</h3>
+        <p>Abrí la ubicación en Google Maps y planificá tu llegada.</p>
+        <a class="btn" href="https://share.google/n15KNjo4FpJSv6rLh">Ver ubicación</a>
+      </div>
+    </div>
+    <div class="galeria">
+      <figure class="gph"><img class="gimg" src="img/foto-03.jpg" alt="Sector de parkour con cajones, barras, pasillos de goma azul y negra y colchonetas" width="1300" height="975" loading="lazy" decoding="async"><figcaption><b>Zona de parkour</b>Cajones, barras y pasillos de goma para entrenar saltos y desplazamientos.</figcaption></figure>
+      <figure class="gph"><img class="gimg" src="img/foto-05.jpg" alt="Sector infantil con piso de goma rojo, módulos de espuma de colores y telas aéreas" width="1300" height="975" loading="lazy" decoding="async"><figcaption><b>Zona infantil</b>Módulos blandos de colores para los más chicos.</figcaption></figure>
+    </div>
+    <p>Dos espacios pensados para cada edad, con colchonetas y módulos para entrenar con seguridad.</p>
+  </div>
+</section>
+
+
+<section id="galeria" style="background:var(--s1)">
+  <div class="wrap">
+    <div class="gal-head">
+      <div><h2 class="h2">Galería</h2><span class="bar"></span></div>
+      <div class="flechas">
+        <button type="button" class="fl" id="gprev" aria-label="Fotos anteriores"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="fl" id="gnext" aria-label="Fotos siguientes"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <p class="lead">Encuentros, viajes, salidas al aire libre y momentos recreativos de nuestra comunidad en movimiento. Deslizá las fotos o usá las flechas para recorrerlas.</p>
+    <div class="filtros" role="group" aria-label="Filtrar fotos">
+      <button type="button" class="f" data-f="all" aria-pressed="true">Todas</button>
+      <button type="button" class="f" data-f="recreativos" aria-pressed="false">Recreativos</button>
+      <button type="button" class="f" data-f="viajes" aria-pressed="false">Viajes</button>
+      <button type="button" class="f" data-f="aire" aria-pressed="false">Salidas al aire libre</button>
+      <button type="button" class="f" data-f="rt" aria-pressed="false">Encuentros de RT</button>
+      <button type="button" class="f" data-f="clase" aria-pressed="false">En clase</button>
+    </div>
+    <div class="pista" id="pista" tabindex="0" role="region" aria-label="Galería de fotos">
+      <figure class="slide" data-cat="rt"><button type="button" class="zoom" aria-label="Ampliar foto: Alumnos e instructores posando con diplomas y medallas después de un encuentro en el gimnasio"><img src="img/foto-06.jpg" alt="Alumnos e instructores posando con diplomas y medallas después de un encuentro en el gimnasio" width="1500" height="1125" loading="lazy" decoding="async"></button><figcaption><b>Encuentros de RT</b></figcaption></figure>
+      <figure class="slide" data-cat="viajes"><button type="button" class="zoom" aria-label="Ampliar foto: Instructores y alumnos con la camiseta del equipo y gorras, posando en la playa"><img src="img/foto-07.jpg" alt="Instructores y alumnos con la camiseta del equipo y gorras, posando en la playa" width="1500" height="1125" loading="lazy" decoding="async"></button><figcaption><b>Viaje a la playa</b></figcaption></figure>
+      <figure class="slide" data-cat="recreativos"><button type="button" class="zoom" aria-label="Ampliar foto: Chicos e instructores disfrazados de superhéroes y otros personajes en el gimnasio"><img src="img/foto-08.jpg" alt="Chicos e instructores disfrazados de superhéroes y otros personajes en el gimnasio" width="1500" height="1125" loading="lazy" decoding="async"></button><figcaption><b>Recreativos</b></figcaption></figure>
+      <figure class="slide" data-cat="aire"><button type="button" class="zoom" aria-label="Ampliar foto: Clase al aire libre en un parque: alumnos e instructores en círculo sobre el césped"><img src="img/foto-09.jpg" alt="Clase al aire libre en un parque: alumnos e instructores en círculo sobre el césped" width="1500" height="1125" loading="lazy" decoding="async"></button><figcaption><b>Salidas al aire libre</b></figcaption></figure>
+      <figure class="slide" data-cat="viajes"><button type="button" class="zoom" aria-label="Ampliar foto: Grupo de alumnos e instructores posando en un skatepark con grafitis rodeado de árboles"><img src="img/foto-10.jpg" alt="Grupo de alumnos e instructores posando en un skatepark con grafitis rodeado de árboles" width="1018" height="1357" loading="lazy" decoding="async"></button><figcaption><b>Viaje a Mendoza</b></figcaption></figure>
+      <figure class="slide" data-cat="recreativos"><button type="button" class="zoom" aria-label="Ampliar foto: Chicos con disfraces de papel marrón junto a los instructores frente al local de OPK"><img src="img/foto-11.jpg" alt="Chicos con disfraces de papel marrón junto a los instructores frente al local de OPK" width="1500" height="844" loading="lazy" decoding="async"></button><figcaption><b>Recreativos</b></figcaption></figure>
+      <figure class="slide" data-cat="recreativos"><button type="button" class="zoom" aria-label="Ampliar foto: Pijamada en el gimnasio: chicos en bolsas de dormir sobre colchonetas de colores"><img src="img/foto-12.jpg" alt="Pijamada en el gimnasio: chicos en bolsas de dormir sobre colchonetas de colores" width="1500" height="844" loading="lazy" decoding="async"></button><figcaption><b>Recreativos</b></figcaption></figure>
+      <figure class="slide" data-cat="clase"><button type="button" class="zoom" aria-label="Ampliar foto: Alumnos haciendo ejercicios sobre colchonetas azules mientras los instructores supervisan"><img src="img/foto-13.jpg" alt="Alumnos haciendo ejercicios sobre colchonetas azules mientras los instructores supervisan" width="1500" height="1125" loading="lazy" decoding="async"></button><figcaption><b>En clase</b></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="eventos">
+  <div class="wrap">
+    <h2 class="h2">Eventos</h2><span class="bar"></span>
+    <p class="lead">Torneos, encuentros y actividades al aire libre. Elegí un evento para ver las fotos.</p>
+    <div class="ev">
+      <a href="https://photos.app.goo.gl/r9R6EDdHWd4yoQTY8" target="_blank" rel="noopener"><b>Torneo OPK 2026 “Level Up”</b><span>Ver fotos</span></a>
+      <a href="https://photos.app.goo.gl/cYXixitejhtEgKfN8" target="_blank" rel="noopener"><b>Plaza Aberastain</b><span>10 de julio. Ver fotos</span></a>
+      <a href="https://photos.app.goo.gl/2hmzvYW3z5XJCanZ7" target="_blank" rel="noopener"><b>Día del Padre</b><span>Ver fotos</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="medios">
+  <div class="wrap">
+    <h2 class="h2">OPK en los medios</h2><span class="bar"></span>
+    <p class="lead">Notas y entrevistas sobre nuestra escuela y nuestra forma de entender el parkour.</p>
+    <div class="notas">
+      <a class="nota" href="https://www.diariohuarpe.com/nota/el-parkour-de-ignacio-peralta-se-lucira-en-los-juegos-argentinos-urbanos-2026102121110" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-14.jpg" alt="Ignacio Peralta, de OPK, realizando un salto contra una pared en el gimnasio de la escuela" width="1500" height="844" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Diario Huarpe · Deportes · Juegos urbanos</span>
+        <b>El parkour de Ignacio Peralta se lucirá en los Juegos Argentinos Urbanos</b>
+        <p>Ignacio Peralta, de nuestro equipo, representa al parkour sanjuanino en los Juegos Argentinos Urbanos junto a otros atletas locales.</p>
+        <span class="meta">22 de octubre de 2026 · Por Raúl Caliva</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <details class="mas-notas">
+        <summary><span class="sm-a">Saber más</span><span class="sm-b">Ocultar notas</span></summary>
+        <div class="notas">
+      <a class="nota" href="https://www.damenoticias.com/nota/534193-el-parkour-una-disciplina-que-te-permite-tener-un-cuerpo-fuerte-y-util-para-la-superacion-personal" target="_blank" rel="noopener">
+        <img class="nimg" style="object-position:50% 58%" src="img/foto-15.jpg" alt="Santiago Orquera realizando un salto contra una pared de piedra junto a unas escaleras" width="829" height="1200" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Dame Noticias</span>
+        <b>El parkour, una disciplina que te permite tener un cuerpo fuerte y útil para la superación personal</b>
+        <p>Una nota sobre los beneficios del parkour.</p>
+        <span class="meta">2017</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://sisanjuan.gob.ar/turismo-y-cultura/2018-11-15/11320-el-arte-urbano-se-pone-en-movimiento-en-el-cccg" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-16.jpg" alt="Alumnos del taller de parkour frente al Centro Cultural Conte Grand, algunos en salto y otros sentados sobre las colchonetas" width="782" height="476" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Gobierno de San Juan · Turismo y Cultura · Entrevista</span>
+        <b>El arte urbano se pone en movimiento en el CCCG</b>
+        <p>Los talleres de Parkour y Break Dance del Centro Cultural Conte Grand cierran el año con una muestra. Entrevista a Santiago Orquera, profesor de parkour.</p>
+        <span class="meta">15 de noviembre de 2018 · Prensa Turismo y Cultura</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://laexcusadeportiva.com.ar/2021/05/el-parkour-ya-tiene-su-primera-escuela-en-san-juan/" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-17.jpg" alt="Atleta de OPK realizando un mortal hacia atrás en un parque de San Juan" width="1400" height="990" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">La Excusa Deportiva</span>
+        <b>El parkour ya tiene su primera escuela en San Juan</b>
+        <p>Santiago Orquera, profesor de Educación Física, abre la primera escuela de parkour de la provincia.</p>
+        <span class="meta">12 de mayo de 2021 · Por LED</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://youtu.be/xclQkI29PxE" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-18.jpg" alt="Instructores y alumnos de OPK realizando una demostración de parkour en el estudio de Mundo FIT" width="1400" height="696" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Mundo FIT · Entrevista en video</span>
+        <b>Mundo FIT. Parkour</b>
+        <p>Demostración y entrevista sobre parkour en el programa Mundo FIT.</p>
+        <span class="meta">23 de agosto de 2024</span>
+        <span class="leer">Ver el video</span>
+        </div>
+      </a>
+      <a class="nota" href="https://www.diariohuarpe.com/nota/orquera-parkour-kinect-la-escuela-que-ofrece-actividad-fisica-al-aire-libre-en-san-juan-2025121319390" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-19.jpg" alt="Chicos y adolescentes de OPK saltando y entrenando al aire libre con la camiseta azul del equipo" width="970" height="546" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Diario Huarpe · Provinciales · Recreación</span>
+        <b>Orquera Parkour Kinect, la escuela que ofrece actividad física al aire libre en San Juan</b>
+        <p>La primera escuela de parkour de la provincia ofrece este verano una propuesta al aire libre, destinada a niños y jóvenes desde los 4 años.</p>
+        <span class="meta">15 de diciembre de 2025 · Por Julieta Flores Méndez</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://www.diariodecuyo.com.ar/pasion-deportiva/parkour-el-deporte-que-desarrolla-el-arte-superarse-uno-mismo-usando-solo-el-cuerpo-como-herramienta-n6569317" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-20.jpg" alt="Dos alumnos de OPK realizando saltos sobre cajones en el gimnasio de la escuela" width="1000" height="750" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Diario de Cuyo · Pasión Deportiva</span>
+        <b>Parkour, el deporte que desarrolla el arte de superarse a uno mismo usando solo el cuerpo como herramienta</b>
+        <p>Se puede practicar en OPK Escuela de Parkour, en Capital, con clases tanto para niños como adultos.</p>
+        <span class="meta">29 de marzo de 2026 · Por Celeste Roco Navea</span>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://diariomovil.info/contenido/61078/parkour-la-disciplina-que-practican-cada-vez-mas-sanjuaninos" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-21.jpg" alt="Alumnos e instructores de parkour posando sobre cajones y colchonetas en el gimnasio" width="1280" height="853" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Diario Móvil</span>
+        <b>Parkour, la disciplina que practican cada vez más sanjuaninos</b>
+        <p>Una nota sobre el crecimiento del parkour en San Juan.</p>
+        <span class="leer">Leer la nota</span>
+        </div>
+      </a>
+      <a class="nota" href="https://www.youtube.com/watch?v=wV90VQwCml8" target="_blank" rel="noopener">
+        <img class="nimg" src="img/foto-22.jpg" alt="Santiago Orquera hablando con micrófono en el programa Sendereando" width="1400" height="787" loading="lazy" decoding="async">
+        <div class="ncont">
+        <span class="med">Sendereando · Entrevista en video</span>
+        <b>Santi Orquera: “Con el Parkour nos expresamos con el cuerpo y el movimiento”</b>
+        <p>Entrevista a Santiago Orquera sobre el parkour y su escuela.</p>
+        <span class="leer">Ver la entrevista</span>
+        </div>
+      </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" style="background:var(--s1)">
+  <div class="wrap nos">
+    <div>
+      <h2 class="h2">Sobre OPK</h2><span class="bar"></span>
+      <p>OPK (Orquera Parkour Kinect) es un centro de formación en movimiento de San Juan, dedicado a la enseñanza del parkour con un enfoque educativo, seguro y profesional. A través del deporte, la recreación y el entrenamiento, promovemos el desarrollo físico, mental y emocional de niños, niñas y adolescentes, fomentando la autoconfianza, la creatividad, la perseverancia y el respeto.</p>
+      <p>Nuestro equipo está formado por estudiantes avanzados de Educación Física con sólida experiencia en parkour, bajo la coordinación general de Santiago Orquera, Licenciado en Educación Física y con más de 12 años de trayectoria en la disciplina. Trabajamos con vocación pedagógica: seguridad, acompañamiento personalizado y formación integral de cada alumno.</p>
+      <h3 class="staff-h">Nuestro staff</h3>
+        <ul class="equipo" aria-label="Equipo de profesores">
+          <li class="jefe"><span class="av" aria-hidden="true">SO</span><span class="tx"><b>Santiago Orquera</b><small>Coordinación general</small></span></li>
+          <li><span class="av" aria-hidden="true">MS</span><span class="tx"><b>Martín Salinas</b><small>Profesor</small></span></li>
+          <li><span class="av" aria-hidden="true">IP</span><span class="tx"><b>Ignacio Peralta</b><small>Profesor</small></span></li>
+          <li><span class="av" aria-hidden="true">AO</span><span class="tx"><b>Agustín Ortiz</b><small>Profesor</small></span></li>
+          <li><span class="av" aria-hidden="true">SA</span><span class="tx"><b>Sebastián Archilla</b><small>Profesor</small></span></li>
+          <li><span class="av" aria-hidden="true">SD</span><span class="tx"><b>Santino Dolab</b><small>Monitor</small></span></li>
+          <li><span class="av" aria-hidden="true">EG</span><span class="tx"><b>Exequiel Garro</b><small>Profesor</small></span></li>
+          <li><span class="av" aria-hidden="true">BG</span><span class="tx"><b>Brian González</b><small>Monitor</small></span></li>
+        </ul>
+      <p>Invitamos a las familias a conocer nuestro espacio y a confiar en un equipo comprometido con el crecimiento y bienestar de sus hijos.</p>
+    </div>
+    <blockquote class="gt">“El cuerpo no se adapta al espacio; lo redefine. A través de la intención y el control, transformamos cada límite del entorno en un trazo de pura libertad.”</blockquote>
+  </div>
+  <div class="wrap hist">
+    <details class="hd">
+      <summary><span class="sm-a">Ver nuestra historia</span><span class="sm-b">Ocultar historia</span></summary>
+      <div class="hbar">
+        <h3 class="staff-h">Nuestra línea de tiempo</h3>
+        <div class="hctl"><button type="button" id="hprev" aria-label="Anterior">‹</button><button type="button" id="hnext" aria-label="Siguiente">›</button></div>
+      </div>
+      <ol class="hpista" id="hpista" tabindex="0" aria-label="Línea de tiempo de OPK">
+        <li class="hito">
+          <div class="hfoto" role="img" aria-label="Espacio para la foto de 2015"><span>Foto 2015</span></div>
+          <span class="hy">2015</span>
+          <h4>Nacemos</h4>
+          <p>Empezamos a enseñar parkour en San Juan. Así nació OPK.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto"><img src="img/foto-23.jpg" alt="Tres alumnos saltando un muro durante el taller de parkour del Centro Cultural Conte Grand" width="1000" height="533" loading="lazy" decoding="async"></div>
+          <span class="hy">2017</span>
+          <h4>Primer taller de parkour</h4>
+          <p>Primer taller de parkour, abierto y gratuito, en el Centro Cultural Conte Grand.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto"><img src="img/foto-24.jpg" alt="Grupo de alumnos y profesores de parkour posando en el gimnasio" width="1000" height="665" loading="lazy" decoding="async"></div>
+          <span class="hy">2018</span>
+          <h4>1° Torneo de parkour en San Juan</h4>
+          <p>Se realiza el primer torneo de parkour de San Juan.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto"><img src="img/foto-25.jpg" alt="Grupo de participantes del primer RT Provincial de parkour en San Juan, posando en el gimnasio" width="1000" height="750" loading="lazy" decoding="async"></div>
+          <span class="hy">2019</span>
+          <h4>1° RT Provincial en San Juan</h4>
+          <p>Primer RT Provincial de parkour en San Juan, organizado por Santiago Orquera y Catriel Morales.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto"><img src="img/foto-26.jpg" alt="Niños corriendo y entrenando parkour entre cajones y neumáticos en el espacio abierto de Fly" width="1000" height="750" loading="lazy" decoding="async"></div>
+          <span class="hy">2021</span>
+          <h4>Espacio abierto de Fly</h4>
+          <p>Clases de parkour en el espacio abierto de Fly. Ese año Santiago Orquera abrió la primera escuela de parkour de la provincia.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto"><img src="img/foto-27.jpg" alt="Niños y profesores entrenando parkour en el primer espacio engomado de OPK: saltos sobre cajones, colchonetas y módulos" width="1000" height="750" loading="lazy" decoding="async"></div>
+          <span class="hy">2024</span>
+          <h4>Primer espacio engomado de parkour</h4>
+          <p>Armamos nuestro primer espacio engomado para entrenar parkour.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto" role="img" aria-label="Espacio para la foto de 2025"><span>Foto 2025</span></div>
+          <span class="hy">2025</span>
+          <h4>Parkour al aire libre</h4>
+          <p>Sumamos propuestas al aire libre para niños y jóvenes desde los 4 años.</p>
+        </li>
+        <li class="hito">
+          <div class="hfoto" role="img" aria-label="Espacio para la foto de 2026"><span>Foto 2026</span></div>
+          <span class="hy">2026</span>
+          <h4>Torneo Level Up y Juegos Urbanos</h4>
+          <p>Organizamos el Torneo OPK “Level Up” y uno de los nuestros, Ignacio Peralta, compite en los Juegos Argentinos Urbanos.</p>
+        </li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<section id="cronograma">
+  <div class="wrap">
+    <h2 class="h2">Cronograma mensual</h2><span class="bar"></span>
+    <p class="lead">Tocá un mes para ver el calendario con fechas y cupos.</p>
+    <div class="meses">
+      <a href="https://drive.google.com/file/d/18_UVnadjUvyJYrxgCcvXMQ4zkq04O7Z4/view?usp=drivesdk" target="_blank" rel="noopener">Ver agosto</a>
+      <a href="https://drive.google.com/file/d/1hbci_wpzwagBb6EmVdhFYt6yQ25QmcFe/view?usp=drivesdk" target="_blank" rel="noopener">Ver septiembre</a>
+      <a href="https://drive.google.com/file/d/1dOL2536FXusO8LgDkRVvdxDwYPql_eZ5/view?usp=sharing" target="_blank" rel="noopener">Ver octubre</a>
+      <span>Noviembre: próximamente</span>
+      <span>Diciembre: próximamente</span>
+    </div>
+  </div>
+</section>
+
+<section id="documentos" style="background:var(--s1)">
+  <div class="wrap">
+    <h2 class="h2">Documentos</h2><span class="bar"></span>
+    <p class="lead">Completá y enviá la documentación antes de tu primera clase.</p>
+    <div class="docs">
+      <!-- Cuando tengas el link del formulario, convertí este div en: <a href="LINK" target="_blank" rel="noopener"> ... </a> -->
+      <div class="doc"><span>Colonia de Parkour<small>Formulario de inscripción verano 2027</small></span></div>
+      <a href="https://drive.google.com/file/d/1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi/view?usp=sharing" target="_blank" rel="noopener"><span>Términos y condiciones del servicio<small>Documento en Drive</small></span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScZu_m7O1VJf0j6ELTAdcpJOOR_rSbiSbVfjDS7KRfhnK27vg/viewform" target="_blank" rel="noopener"><span>Formulario de inscripción 2026<small>Parkour y Funcional</small></span></a>
+      <a href="https://forms.gle/CUmMEhoTxfiQuYMC9" target="_blank" rel="noopener"><span>Inscripción Parkour Mini 2-3<small>Formulario</small></span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform" target="_blank" rel="noopener"><span>Inscripciones 2026<small>Formulario general</small></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="m">
+      <img src="img/foto-01.png" alt="" width="70" height="70">
+      <div><strong>Orquera Parkour Kinect</strong>A través del parkour, nos superamos.<br>Escuela de parkour en San Juan, Argentina.</div>
+    </div>
+    <div>25 de Mayo 967 Este, Capital, San Juan<br>WhatsApp: 264-5753607 / 264-4428488<br><a href="mailto:opk.sanjuan@gmail.com">opk.sanjuan@gmail.com</a><br>Instagram: <a href="https://www.instagram.com/parkour.opk/">@parkour.opk</a></div>
+  </div>
+</footer>
+
+
+<dialog id="lb" aria-label="Foto ampliada">
+  <div class="lb-in">
+    <img id="lbimg" alt="">
+    <p id="lbcap"></p>
+  </div>
+  <button type="button" class="lb-b lb-x" id="lbx" aria-label="Cerrar">&times;</button>
+  <button type="button" class="lb-b lb-p" id="lbp" aria-label="Foto anterior">&#8249;</button>
+  <button type="button" class="lb-b lb-n" id="lbn" aria-label="Foto siguiente">&#8250;</button>
+</dialog>
+
+<script>
+(function(){
+  var d=document.querySelector('.mas details'); if(!d) return;
+  document.addEventListener('click',function(e){ if(!d.contains(e.target)) d.removeAttribute('open'); });
+  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ d.removeAttribute('open'); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') d.removeAttribute('open'); });
+})();
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Video: se carga al tocar la miniatura */
+  var b=document.getElementById('playbtn'), v=document.getElementById('video');
+  if(b&&v) b.addEventListener('click',function(){
+    v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/xclQkI29PxE?autoplay=1&rel=0" title="Mundo FIT. Parkour" allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  });
+  /* Galería: flechas y filtros */
+  var p=document.getElementById('pista'); if(!p) return;
+  var step=function(d){ p.scrollBy({left:d*Math.max(280,p.clientWidth*.8),behavior:reduce?'auto':'smooth'}); };
+  document.getElementById('gprev').addEventListener('click',function(){step(-1)});
+  document.getElementById('gnext').addEventListener('click',function(){step(1)});
+  var fs=document.querySelectorAll('.f'), sl=p.querySelectorAll('.slide');
+  fs.forEach(function(f){ f.addEventListener('click',function(){
+    fs.forEach(function(x){x.setAttribute('aria-pressed',x===f?'true':'false')});
+    sl.forEach(function(s){ s.hidden = !(f.dataset.f==='all' || s.dataset.cat===f.dataset.f); });
+    p.scrollTo({left:0});
+  });});
+})();
+</script>
+<script>
+(function(){
+  var p=document.getElementById('pista'), lb=document.getElementById('lb'); if(!p||!lb||!lb.showModal) return;
+  var li=document.getElementById('lbimg'), lc=document.getElementById('lbcap'), idx=0;
+  function vis(){ return Array.prototype.slice.call(p.querySelectorAll('.slide:not([hidden])')); }
+  function show(i){ var v=vis(); idx=(i+v.length)%v.length; var im=v[idx].querySelector('img');
+    li.src=im.src; li.alt=im.alt; lc.textContent=v[idx].querySelector('b').textContent+'  ('+(idx+1)+' de '+v.length+')'; }
+  p.addEventListener('click',function(e){ var z=e.target.closest('.zoom'); if(!z) return;
+    var s=z.closest('.slide'); lb.showModal(); show(vis().indexOf(s)); });
+  document.getElementById('lbx').addEventListener('click',function(){lb.close()});
+  document.getElementById('lbp').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('lbn').addEventListener('click',function(){show(idx+1)});
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('lb-in')) lb.close(); });
+  lb.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft') show(idx-1); if(e.key==='ArrowRight') show(idx+1); });
+})();
+</script>
+<script>
+(function(){
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.sedes [role="tab"]'));
+  function sel(t){ tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1;
+    document.getElementById(x.getAttribute('aria-controls')).hidden=!on; }); }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){sel(t)});
+    t.addEventListener('keydown',function(e){ var n=null;
+      if(e.key==='ArrowRight') n=tabs[(i+1)%tabs.length]; if(e.key==='ArrowLeft') n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){ sel(n); n.focus(); } });
+  });
+})();
+</script>
+<script>
+document.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){
+var t=document.getElementById(b.dataset.cp).textContent.trim();
+function ok(){var o=b.textContent;b.textContent='¡Copiado!';setTimeout(function(){b.textContent=o},1500)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){})}
+else{var x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');ok()}catch(e){}x.remove()}
+})});
+</script>
+<script>
+(function(){var p=document.getElementById('hpista');if(!p)return;
+function st(d){p.scrollBy({left:d*Math.max(280,p.clientWidth*.8),behavior:'smooth'})}
+document.getElementById('hprev').addEventListener('click',function(){st(-1)});
+document.getElementById('hnext').addEventListener('click',function(){st(1)});})();
+</script>
+</body>
+</html>

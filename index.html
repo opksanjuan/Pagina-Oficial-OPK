@@ -388,6 +388,105 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
 .hito h4{margin:6px 0 6px;font-size:1.05rem;line-height:1.25}
 .hito p{margin:0;color:#d3deea;font-size:.95rem;line-height:1.5}
 </style>
+<style>
+/* ===== Botones sin link ===== */
+.btn[aria-disabled="true"]{opacity:.55;cursor:default;pointer-events:none}
+
+/* ===== Inscripciones en el inicio ===== */
+.insc{margin-top:34px;padding:22px;border-radius:20px;background:rgba(12,19,28,.82);border:1px solid var(--line);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:760px}
+.insc-t{font-size:clamp(1.6rem,3vw,2.2rem);text-transform:uppercase;letter-spacing:.03em;margin-bottom:14px}
+.insc-st{font-family:Manrope,sans-serif;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--b2);margin:20px 0 10px}
+.insc-btns{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:10px}
+.ib{display:block;padding:14px 16px;border-radius:14px;background:var(--s2);border:1px solid var(--line);border-left:5px solid var(--b2);text-decoration:none;color:var(--txt);line-height:1.3}
+.ib b{display:block;font-weight:800;font-size:1rem}
+.ib span{display:block;color:var(--mut);font-size:.85rem;margin-top:3px}
+a.ib:hover{border-color:var(--b2);background:#18283a}
+.ib-dest{background:var(--y);border-color:var(--y);color:#05080d}
+.ib-dest span{color:#3a3a10;font-weight:600}
+a.ib-dest:hover{background:#fff;border-color:#fff}
+.ib-off{opacity:.6;border-left-color:var(--mut)}
+.ib-doc{border-left-color:var(--b1)}
+.ib-doc b::before{content:"⬇ ";color:var(--b2)}
+
+/* ===== Banner Colonia 2027 ===== */
+.col-sec{padding:60px 0 0}
+.col-ban{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:clamp(28px,6vw,64px);border-radius:26px;overflow:hidden;text-decoration:none;color:#fff;min-height:360px;justify-content:flex-end;
+  background:linear-gradient(100deg,rgba(5,8,13,.92) 0%,rgba(5,8,13,.6) 55%,rgba(5,8,13,.15) 100%),url("img/foto-19.jpg") center/cover,var(--s2);
+  box-shadow:0 0 0 2px var(--y),0 30px 70px rgba(0,0,0,.5);transition:transform .2s}
+.col-ban:hover{transform:translateY(-3px)}
+.col-tag{background:var(--y);color:#05080d;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;padding:6px 14px;border-radius:999px}
+.col-h{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(2.4rem,7vw,5rem);line-height:1;text-transform:uppercase}
+.col-h em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.col-d{max-width:56ch;color:#d8e2ec}
+.col-chips{display:flex;flex-wrap:wrap;gap:8px}
+.col-chips span{padding:6px 14px;border-radius:999px;border:1px solid var(--b2);font-weight:700;font-size:.88rem;background:rgba(25,211,214,.12)}
+.docs a.dl::after{content:"Descargar"}
+
+/* ===== Menú hamburguesa (celular) ===== */
+.hamb{display:none;width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--s2);cursor:pointer;padding:12px 11px;flex-direction:column;justify-content:space-between}
+.hamb span{display:block;height:3px;border-radius:2px;background:#fff;transition:transform .2s,opacity .2s}
+.hamb[aria-expanded="true"] span:nth-child(1){transform:translateY(9.5px) rotate(45deg)}
+.hamb[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamb[aria-expanded="true"] span:nth-child(3){transform:translateY(-9.5px) rotate(-45deg)}
+
+/* ===== Arreglos para celular ===== */
+html,body{max-width:100%;overflow-x:hidden}
+img{max-width:100%}
+.info2{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.sedes{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.ev{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
+.datos .wrap{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
+.pilares{grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr))}
+.datos .wrap{padding:0 24px;border:0}
+
+@media (max-width:760px){
+  header .wrap{padding:0 16px}
+  nav,nav[aria-label]{flex-direction:row!important;align-items:center!important;padding:8px 0!important;min-height:64px;flex-wrap:wrap}
+  .hamb{display:flex}
+  #menu-ppal{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0;padding:6px 0 14px;max-height:calc(100svh - 80px);overflow-y:auto}
+  #menu-ppal.abierto{display:flex}
+  #menu-ppal>li{border-top:1px solid var(--line)}
+  #menu-ppal>li>a,#menu-ppal .mas summary{display:block;padding:14px 4px!important;font-size:1.1rem!important}
+  #menu-ppal>li>a.pill{display:block;text-align:center;margin:12px 0 4px;padding:12px!important}
+  #menu-ppal>li>a:not(.pill)::before,.mas summary::before{display:none}
+  .menu{position:static;margin:0 0 8px;min-width:0;box-shadow:none}
+  .menu a{padding:12px 14px}
+
+  .hero{padding:110px 0 50px;min-height:auto;background:linear-gradient(180deg,rgba(5,8,13,.78),rgba(5,8,13,.95)),var(--img-parkour) center/cover}
+  .hero .wrap{padding:0 18px}
+  .hero .in{flex-direction:column;align-items:flex-start;gap:22px}
+  .hero img{width:110px}
+  .ht{flex:none;width:100%}
+  .hero h1{font-size:clamp(2.3rem,11vw,3.4rem)}
+  .btns .btn{flex:1 1 100%;text-align:center}
+  .insc{padding:18px 14px;margin-top:26px}
+  .wrap{padding:0 18px}
+  .datos div{padding:18px 4px}
+  .datos b{font-size:1.6rem}
+  .split{min-height:0}
+  .split .foto{min-height:260px}
+  .col-sec{padding-top:44px}
+  .col-ban{min-height:0;padding:26px 20px}
+  .col-ban .btn{width:100%;text-align:center}
+  .socios .band .btn{width:100%;text-align:center}
+  .fila .p{font-size:1.9rem}
+  .pg>div{flex-wrap:wrap}
+  .pg dd{text-align:left;flex-wrap:wrap}
+  .mapa{padding:24px 18px}
+  .gal-head .flechas{margin-bottom:16px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+
+  /* Tabla de horarios → tarjetas */
+  .cup-scroll{overflow:visible}
+  .cup,.cup thead,.cup tbody,.cup tr,.cup th,.cup td{display:block;width:100%;min-width:0}
+  .cup thead{display:none}
+  .cup tbody tr{margin-bottom:14px;border-radius:16px;overflow:hidden;background:var(--s1);border:1px solid var(--line)}
+  .cup tbody th{border-radius:0!important;width:100%;padding:16px}
+  #clases .cup td{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--line);border-radius:0!important;text-align:left}
+  .cup td::before{content:attr(data-dia);font-weight:700;color:var(--txt)}
+  .cup td.nd{display:none!important}
+}
+</style>
 </head>
 <body>
 
@@ -395,7 +494,9 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
   <div class="wrap">
     <nav aria-label="Principal">
       <a class="logo" href="#inicio" aria-label="OPK, ir al inicio"><img src="img/foto-01.png" alt="OPK" width="46" height="46"></a>
-      <ul>
+      <button type="button" class="hamb" id="hamb" aria-expanded="false" aria-controls="menu-ppal" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <ul id="menu-ppal">
+        <li><a href="#inscripciones">Inscripciones</a></li>
         <li><a href="#clases">Clases</a></li>
         <li><a href="#precios">Precios</a></li>
         <li><a href="#ubicacion">Ubicación</a></li>
@@ -404,6 +505,7 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
           <details>
             <summary>Más información</summary>
             <ul class="menu">
+              <li><a href="colonia-2027.html">Colonia Verano 2027</a></li>
               <li><a href="#parkour">¿Qué es el parkour?</a></li>
               <li><a href="#galeria">Galería</a></li>
               <li><a href="#eventos">Eventos</a></li>
@@ -430,7 +532,23 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
       <p class="txt">Desde 2015 somos referentes del parkour en San Juan. En OPK no solo aprendés a saltar: aprendés a confiar en vos mismo.</p>
       <div class="btns">
         <a class="btn" href="#clases">Ver días y horarios</a>
-        <a class="btn o" href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform">Inscribirme 2026</a>
+        <!-- Inscribirme 2026: sin link por ahora (el formulario anterior no era el correcto). Cuando lo tengas, agregá href="LINK" -->
+        <a class="btn o" aria-disabled="true">Inscribirme 2026</a>
+      </div>
+
+      <div class="insc" id="inscripciones">
+        <h2 class="insc-t">Inscripciones</h2>
+        <div class="insc-btns">
+          <a class="ib ib-dest" href="colonia-2027.html#inscripcion"><b>Colonia de Parkour Verano 2027</b><span>Inscripción OPK · ver info y anotarme</span></a>
+          <!-- Cuando tengas el link: cambiá <span class="ib ib-off"> por <a class="ib" href="LINK" target="_blank" rel="noopener"> y cerrá con </a> -->
+          <span class="ib ib-off" aria-disabled="true"><b>Inscripción Anual 2027 OPK</b><span>Inicio en marzo · próximamente</span></span>
+          <a class="ib" href="https://forms.gle/8nBSJVSnFDCrBa226" target="_blank" rel="noopener"><b>Programa de Educación Física 2027</b><span>Formulario de inscripción</span></a>
+        </div>
+        <h3 class="insc-st">Otros documentos · Descargables</h3>
+        <div class="insc-btns">
+          <a class="ib ib-doc" href="https://drive.google.com/uc?export=download&amp;id=1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi" target="_blank" rel="noopener"><b>Términos y condiciones del servicio</b><span>Descargar para imprimir y firmar</span></a>
+          <a class="ib ib-doc" href="https://drive.google.com/uc?export=download&amp;id=1eNSqW7ChKcLgGGJmDJdsRMyvaEOnadrh" target="_blank" rel="noopener"><b>Ficha médica</b><span>Descargar para imprimir y firmar</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -445,6 +563,18 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
     <div><b class="gt">Lunes a viernes</b><span>Clases por la tarde-noche</span></div>
   </div>
 </div>
+
+<section id="colonia" class="col-sec">
+  <div class="wrap">
+    <a class="col-ban" href="colonia-2027.html">
+      <span class="col-tag">Inscripciones abiertas</span>
+      <b class="col-h">Colonia de Parkour<br><em>Verano 2027</em></b>
+      <span class="col-d">Parkour, juegos, salidas y mucha diversión para chicos y chicas desde los 4 años. Mirá el lugar, el cronograma, las actividades, qué llevar y los precios.</span>
+      <span class="col-chips"><span>Promo hermanos</span><span>Reservá con el 20% de seña</span></span>
+      <span class="btn">Ver toda la info e inscribirme</span>
+    </a>
+  </div>
+</section>
 
 
 <section id="parkour" class="pk">
@@ -469,7 +599,7 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
     <p>Desde 2015, somos referentes del Parkour en San Juan. En OPK no solo aprendés a saltar, aprendés a confiar en vos mismo. Clases guiadas por profesionales, instalaciones preparadas y la mejor comunidad para entrenar.</p>
     <p><b>¿Estás listo para ver el mundo como tu gimnasio?</b></p>
     <div class="btns">
-      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform">Inscribirme 2026</a>
+      <a class="btn" aria-disabled="true">Inscribirme 2026</a>
       <a class="btn o" href="https://wa.me/542645753607">Escribinos por WhatsApp</a>
     </div>
   </div>
@@ -864,12 +994,12 @@ nav a.pill:hover{box-shadow:0 0 22px 4px rgba(249,239,35,.45)}
     <h2 class="h2">Documentos</h2><span class="bar"></span>
     <p class="lead">Completá y enviá la documentación antes de tu primera clase.</p>
     <div class="docs">
-      <!-- Cuando tengas el link del formulario, convertí este div en: <a href="LINK" target="_blank" rel="noopener"> ... </a> -->
-      <div class="doc"><span>Colonia de Parkour<small>Formulario de inscripción verano 2027</small></span></div>
-      <a href="https://drive.google.com/file/d/1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi/view?usp=sharing" target="_blank" rel="noopener"><span>Términos y condiciones del servicio<small>Documento en Drive</small></span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScZu_m7O1VJf0j6ELTAdcpJOOR_rSbiSbVfjDS7KRfhnK27vg/viewform" target="_blank" rel="noopener"><span>Formulario de inscripción 2026<small>Parkour y Funcional</small></span></a>
+      <a href="colonia-2027.html#inscripcion"><span>Colonia de Parkour Verano 2027<small>Inscripción online</small></span></a>
+      <div class="doc"><span>Inscripción Anual 2027 OPK<small>Inicio en marzo</small></span></div>
+      <a href="https://forms.gle/8nBSJVSnFDCrBa226" target="_blank" rel="noopener"><span>Programa de Educación Física 2027<small>Formulario de inscripción</small></span></a>
+      <a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi" target="_blank" rel="noopener"><span>Términos y condiciones del servicio<small>Descargar para imprimir y firmar</small></span></a>
+      <a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1eNSqW7ChKcLgGGJmDJdsRMyvaEOnadrh" target="_blank" rel="noopener"><span>Ficha médica<small>Descargar para imprimir y firmar</small></span></a>
       <a href="https://forms.gle/CUmMEhoTxfiQuYMC9" target="_blank" rel="noopener"><span>Inscripción Parkour Mini 2-3<small>Formulario</small></span></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScQbWuK33pxZv-_HsJqJURMPqtzvVK47HqEqHXLS2RkML6fHQ/viewform" target="_blank" rel="noopener"><span>Inscripciones 2026<small>Formulario general</small></span></a>
     </div>
   </div>
 </section>
@@ -967,6 +1097,19 @@ else{var x=document.createElement('textarea');x.value=t;document.body.appendChil
 function st(d){p.scrollBy({left:d*Math.max(280,p.clientWidth*.8),behavior:'smooth'})}
 document.getElementById('hprev').addEventListener('click',function(){st(-1)});
 document.getElementById('hnext').addEventListener('click',function(){st(1)});})();
+</script>
+<script>
+/* Menú hamburguesa en celular */
+(function(){var b=document.getElementById('hamb'),m=document.getElementById('menu-ppal');if(!b||!m)return;
+function set(on){m.classList.toggle('abierto',on);b.setAttribute('aria-expanded',on);b.setAttribute('aria-label',on?'Cerrar menú':'Abrir menú');}
+b.addEventListener('click',function(e){e.stopPropagation();set(!m.classList.contains('abierto'))});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});})();
+/* Tabla de horarios: etiquetas de día para la vista de tarjetas */
+document.querySelectorAll('table.cup').forEach(function(t){
+var dias=[].map.call(t.querySelectorAll('thead th'),function(th){return th.textContent.trim()});
+t.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){
+if(c.tagName==='TD'){c.setAttribute('data-dia',dias[i]||'');if(c.querySelector('.sr'))c.classList.add('nd');}});});});
 </script>
 </body>
 </html>

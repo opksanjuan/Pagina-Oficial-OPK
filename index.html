@@ -1063,4 +1063,213 @@ body.res-abierto{overflow:hidden}
       <a href="https://forms.gle/Bew7k3KKt3vxfcK67" target="_blank" rel="noopener"><span>Inscripción Anexo Rawson<small>Se retoma en enero 2027 · cupo limitado</small></span></a>
       <div class="doc"><span>Inscripción Anual 2027 OPK · Sede Capital<small>Inicio de clases en marzo 2027</small></span></div>
       <a href="https://forms.gle/8nBSJVSnFDCrBa226" target="_blank" rel="noopener"><span>Programa de Educación Física 2027<small>Formulario de inscripción</small></span></a>
-      <a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi" target="_blank" rel="noopener"><span>Términos y condiciones de
+      <a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1js8sWxIrPPSa0nWb5V9mZEkrcP9FiURi" target="_blank" rel="noopener"><span>Términos y condiciones del servicio<small>Descargar para imprimir y firmar</small></span></a>
+      <a class="dl" href="https://drive.google.com/uc?export=download&amp;id=1eNSqW7ChKcLgGGJmDJdsRMyvaEOnadrh" target="_blank" rel="noopener"><span>Ficha médica<small>Descargar para imprimir y firmar</small></span></a>
+      <a href="https://forms.gle/CUmMEhoTxfiQuYMC9" target="_blank" rel="noopener"><span>Inscripción Parkour Mini 2-3<small>Formulario</small></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="m">
+      <img src="img/foto-01.png" alt="" width="70" height="70">
+      <div><strong>Orquera Parkour Kinect</strong>A través del parkour, nos superamos.<br>Escuela de parkour en San Juan, Argentina.</div>
+    </div>
+    <div>25 de Mayo 967 Este, Capital, San Juan<br>WhatsApp: 264-5753607 / 264-4428488<br><a href="mailto:opk.sanjuan@gmail.com">opk.sanjuan@gmail.com</a><br>Instagram: <a href="https://www.instagram.com/parkour.opk/">@parkour.opk</a></div>
+  </div>
+</footer>
+
+
+<dialog id="lb" aria-label="Foto ampliada">
+  <div class="lb-in">
+    <img id="lbimg" alt="">
+    <p id="lbcap"></p>
+  </div>
+  <button type="button" class="lb-b lb-x" id="lbx" aria-label="Cerrar">&times;</button>
+  <button type="button" class="lb-b lb-p" id="lbp" aria-label="Foto anterior">&#8249;</button>
+  <button type="button" class="lb-b lb-n" id="lbn" aria-label="Foto siguiente">&#8250;</button>
+</dialog>
+
+<script>
+(function(){
+  var d=document.querySelector('.mas details'); if(!d) return;
+  document.addEventListener('click',function(e){ if(!d.contains(e.target)) d.removeAttribute('open'); });
+  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ d.removeAttribute('open'); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') d.removeAttribute('open'); });
+})();
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Video: se carga al tocar la miniatura */
+  var b=document.getElementById('playbtn'), v=document.getElementById('video');
+  if(b&&v) b.addEventListener('click',function(){
+    v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/xclQkI29PxE?autoplay=1&rel=0" title="Mundo FIT. Parkour" allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  });
+  /* Galería: flechas y filtros */
+  var p=document.getElementById('pista'); if(!p) return;
+  var step=function(d){ p.scrollBy({left:d*Math.max(280,p.clientWidth*.8),behavior:reduce?'auto':'smooth'}); };
+  document.getElementById('gprev').addEventListener('click',function(){step(-1)});
+  document.getElementById('gnext').addEventListener('click',function(){step(1)});
+  var fs=document.querySelectorAll('.f'), sl=p.querySelectorAll('.slide');
+  fs.forEach(function(f){ f.addEventListener('click',function(){
+    fs.forEach(function(x){x.setAttribute('aria-pressed',x===f?'true':'false')});
+    sl.forEach(function(s){ s.hidden = !(f.dataset.f==='all' || s.dataset.cat===f.dataset.f); });
+    p.scrollTo({left:0});
+  });});
+})();
+</script>
+<script>
+(function(){
+  var p=document.getElementById('pista'), lb=document.getElementById('lb'); if(!p||!lb||!lb.showModal) return;
+  var li=document.getElementById('lbimg'), lc=document.getElementById('lbcap'), idx=0;
+  function vis(){ return Array.prototype.slice.call(p.querySelectorAll('.slide:not([hidden])')); }
+  function show(i){ var v=vis(); idx=(i+v.length)%v.length; var im=v[idx].querySelector('img');
+    li.src=im.src; li.alt=im.alt; lc.textContent=v[idx].querySelector('b').textContent+'  ('+(idx+1)+' de '+v.length+')'; }
+  p.addEventListener('click',function(e){ var z=e.target.closest('.zoom'); if(!z) return;
+    var s=z.closest('.slide'); lb.showModal(); show(vis().indexOf(s)); });
+  document.getElementById('lbx').addEventListener('click',function(){lb.close()});
+  document.getElementById('lbp').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('lbn').addEventListener('click',function(){show(idx+1)});
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('lb-in')) lb.close(); });
+  lb.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft') show(idx-1); if(e.key==='ArrowRight') show(idx+1); });
+})();
+</script>
+<script>
+(function(){
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.sedes [role="tab"]'));
+  function sel(t){ tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1;
+    document.getElementById(x.getAttribute('aria-controls')).hidden=!on; }); }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){sel(t)});
+    t.addEventListener('keydown',function(e){ var n=null;
+      if(e.key==='ArrowRight') n=tabs[(i+1)%tabs.length]; if(e.key==='ArrowLeft') n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){ sel(n); n.focus(); } });
+  });
+})();
+</script>
+<script>
+document.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){
+var t=document.getElementById(b.dataset.cp).textContent.trim();
+function ok(){var o=b.textContent;b.textContent='¡Copiado!';setTimeout(function(){b.textContent=o},1500)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){})}
+else{var x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');ok()}catch(e){}x.remove()}
+})});
+</script>
+<script>
+(function(){var p=document.getElementById('hpista');if(!p)return;
+function st(d){p.scrollBy({left:d*Math.max(280,p.clientWidth*.8),behavior:'smooth'})}
+document.getElementById('hprev').addEventListener('click',function(){st(-1)});
+document.getElementById('hnext').addEventListener('click',function(){st(1)});})();
+</script>
+<script>
+/* Menú hamburguesa en celular */
+(function(){var b=document.getElementById('hamb'),m=document.getElementById('menu-ppal');if(!b||!m)return;
+function set(on){m.classList.toggle('abierto',on);b.setAttribute('aria-expanded',on);b.setAttribute('aria-label',on?'Cerrar menú':'Abrir menú');}
+b.addEventListener('click',function(e){e.stopPropagation();set(!m.classList.contains('abierto'))});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});})();
+/* Tabla de horarios: etiquetas de día para la vista de tarjetas */
+document.querySelectorAll('table.cup').forEach(function(t){
+var dias=[].map.call(t.querySelectorAll('thead th'),function(th){return th.textContent.trim()});
+t.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){
+if(c.tagName==='TD'){c.setAttribute('data-dia',dias[i]||'');if(c.querySelector('.sr'))c.classList.add('nd');}});});});
+</script>
+
+<!-- ===== Botón de WhatsApp propio de OPK ===== -->
+<a class="wsp" href="https://wa.me/5492645753607?text=Hola%20OPK%21%20Quiero%20hacer%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp al 264-5753607">
+  <span class="wsp-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5c.4 1.8 2.2 3.6 4 4l1.3-1.2 2.2 1-.5 1.6c-3.6.4-7.9-3.9-7.5-7.5l1.6-.5 1 2.2z" fill="currentColor" stroke="none"/></svg></span>
+  <span class="wsp-tx"><small>¿Dudas? Hablemos</small><b>Escribinos</b></span>
+</a>
+
+<!-- ===== Reseñas: pestaña lateral y panel desplegable ===== -->
+<button type="button" class="res-tab" id="res-tab" aria-controls="res-panel" aria-expanded="false">Reseñas <span aria-hidden="true">★</span></button>
+<div class="res-fondo" id="res-fondo"></div>
+<aside class="res" id="res-panel" aria-labelledby="res-tit" aria-hidden="true">
+  <div class="res-cab">
+    <h2 id="res-tit" class="gt">Reseñas</h2>
+    <button type="button" class="res-x" id="res-x" aria-label="Cerrar reseñas">&times;</button>
+  </div>
+  <div class="res-cuerpo">
+    <div class="res-prom" id="res-prom"><span class="n" id="res-n">–</span><div><span class="est" id="res-est" aria-hidden="true"></span><small id="res-cant">Todavía no hay reseñas</small></div></div>
+    <form class="res-form" id="res-form" novalidate>
+      <h3>Contanos tu experiencia</h3>
+      <fieldset>
+        <legend>Tu puntuación (máximo 5 estrellas)</legend>
+        <div class="estrellas">
+          <input type="radio" name="estrellas" id="e5" value="5"><label for="e5" title="5 estrellas">★<span class="sr">5 estrellas</span></label>
+          <input type="radio" name="estrellas" id="e4" value="4"><label for="e4" title="4 estrellas">★<span class="sr">4 estrellas</span></label>
+          <input type="radio" name="estrellas" id="e3" value="3"><label for="e3" title="3 estrellas">★<span class="sr">3 estrellas</span></label>
+          <input type="radio" name="estrellas" id="e2" value="2"><label for="e2" title="2 estrellas">★<span class="sr">2 estrellas</span></label>
+          <input type="radio" name="estrellas" id="e1" value="1"><label for="e1" title="1 estrella">★<span class="sr">1 estrella</span></label>
+        </div>
+      </fieldset>
+      <label for="res-nom">Tu nombre</label>
+      <input type="text" id="res-nom" maxlength="40" autocomplete="name" placeholder="Ej: Mamá de Juan">
+      <label for="res-sede">Sede</label>
+      <select id="res-sede"><option>Anexo Rawson</option><option>Sede Capital</option><option>Colonia de verano</option></select>
+      <label for="res-com">Tu comentario</label>
+      <textarea id="res-com" maxlength="500" placeholder="¿Cómo fue tu experiencia en OPK?"></textarea>
+      <button type="submit" class="btn">Publicar reseña</button>
+      <p class="res-msg" id="res-msg" role="status"></p>
+    </form>
+    <ul class="res-lista" id="res-lista"></ul>
+  </div>
+</aside>
+
+<script>
+/* ===== Reseñas =====
+   RESENAS_URL: pegá acá la URL de tu Google Apps Script (ver archivo resenas-apps-script.gs)
+   para que las reseñas se guarden en una planilla y las vea TODO el mundo.
+   Si queda vacío, cada reseña se guarda solo en el navegador de quien la escribe. */
+var RESENAS_URL = "https://script.google.com/macros/s/AKfycbyVlHyiw5KR3M1CSwS9Oe3887lWYsLQNu6zwNvJvQ1H5e54-jZYg58MF5zQ-H8UmUX3sg/exec";
+(function(){
+  var tab=document.getElementById('res-tab'),pan=document.getElementById('res-panel'),fon=document.getElementById('res-fondo'),
+      x=document.getElementById('res-x'),form=document.getElementById('res-form'),msg=document.getElementById('res-msg'),
+      lista=document.getElementById('res-lista'),KEY='opk-resenas',datos=[];
+  function abrir(on){pan.classList.toggle('on',on);fon.classList.toggle('on',on);document.body.classList.toggle('res-abierto',on);
+    tab.setAttribute('aria-expanded',on);pan.setAttribute('aria-hidden',!on);if(on){x.focus();}else{tab.focus();}}
+  tab.addEventListener('click',function(){abrir(true)});x.addEventListener('click',function(){abrir(false)});
+  fon.addEventListener('click',function(){abrir(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pan.classList.contains('on'))abrir(false)});
+  function est(n){n=Math.round(n);return '★★★★★'.slice(0,n)+'<span class="v">'+'★★★★★'.slice(0,5-n)+'</span>';}
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML;}
+  function pintar(){
+    var ok=datos.filter(function(r){var e=+r.estrellas;return e>=1&&e<=5;});
+    ok.sort(function(a,b){return new Date(b.fecha)-new Date(a.fecha)});
+    if(!ok.length){document.getElementById('res-n').textContent='–';document.getElementById('res-est').innerHTML=est(0);
+      document.getElementById('res-cant').textContent='Todavía no hay reseñas. ¡Sé el primero!';
+      lista.innerHTML='<li class="res-vacio" style="border:0;background:none">Sé el primero en contar tu experiencia.</li>';return;}
+    var prom=ok.reduce(function(s,r){return s+(+r.estrellas)},0)/ok.length;
+    document.getElementById('res-n').textContent=prom.toFixed(1).replace('.',',');
+    document.getElementById('res-est').innerHTML=est(prom);
+    document.getElementById('res-cant').textContent=ok.length+(ok.length===1?' reseña':' reseñas');
+    lista.innerHTML=ok.map(function(r){var f=new Date(r.fecha);
+      return '<li><div class="top"><div><b>'+esc(r.nombre||'Anónimo')+'</b><span class="sd">'+esc(r.sede)+'</span></div><span class="est" aria-label="'+(+r.estrellas)+' de 5 estrellas">'+est(+r.estrellas)+'</span></div>'+
+        (r.comentario?'<p>'+esc(r.comentario)+'</p>':'')+(isNaN(f)?'':'<time>'+f.toLocaleDateString('es-AR',{day:'numeric',month:'long',year:'numeric'})+'</time>')+'</li>';}).join('');
+  }
+  function local(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
+  function cargar(){
+    if(!RESENAS_URL){datos=local();pintar();return;}
+    fetch(RESENAS_URL).then(function(r){return r.json()}).then(function(j){datos=Array.isArray(j)?j:[];pintar();})
+      .catch(function(){datos=local();pintar();});
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();
+    var sel=form.querySelector('input[name=estrellas]:checked');
+    if(!sel){msg.className='res-msg err';msg.textContent='Elegí de 1 a 5 estrellas.';return;}
+    var r={estrellas:+sel.value,nombre:document.getElementById('res-nom').value.trim().slice(0,40),
+      sede:document.getElementById('res-sede').value,comentario:document.getElementById('res-com').value.trim().slice(0,500),
+      fecha:new Date().toISOString()};
+    var btn=form.querySelector('button[type=submit]');btn.disabled=true;msg.className='res-msg';msg.textContent='Publicando…';
+    function listo(){datos.push(r);pintar();form.reset();btn.disabled=false;msg.className='res-msg ok';msg.textContent='¡Gracias por tu reseña!';}
+    if(!RESENAS_URL){try{var l=local();l.push(r);localStorage.setItem(KEY,JSON.stringify(l));}catch(err){}listo();return;}
+    fetch(RESENAS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(r)})
+      .then(listo).catch(function(){btn.disabled=false;msg.className='res-msg err';msg.textContent='No se pudo publicar. Probá de nuevo.';});
+  });
+  cargar();
+})();
+</script>
+</body>
+</html>
